@@ -1,0 +1,69 @@
+<div class="container mt-2">
+    <div class="row">
+        <div class="col-xs-12">
+          <h3 *ngIf="recipeAdded">{{msg}}</h3>
+            <!-- <form>
+                <div class="form-group">
+                  <label for="name">Recipe Name</label>
+                  <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter Name" #nameInput>
+                </div>
+                <div class="form-group">
+                  <label for="description">Description</label>
+                  <input type="text" class="form-control" id="description" placeholder="Enter Description" #descriptionInput>
+                </div>
+                <br>
+                <button class="btn btn-success" type="submit" (click)="onAddRecipe()">New Recipe</button>
+              
+            </form> -->
+
+
+            <form (ngSubmit)="ngSubmit()" #f="ngForm">
+              <div class="form-group" ngModelGroup="recipeDetails" #recipeDetails="ngModelGroup">
+                <div class="form-group">
+                  <label for="name">Recipe Name</label>
+                  <input type="text" class="form-control" ngModel name="name" required
+                  id="name" aria-describedby="emailHelp" placeholder="Enter Name" #name="ngModel">
+                  <span class="help-block" *ngIf="!name.valid && name.touched">Please Enter the valide Name</span>
+                </div>
+                <div class="form-group">
+                  <label for="description">Description</label>
+                  <input type="text" class="form-control" ngModel name="description" required
+                  id="description" placeholder="Enter Description" >
+                </div>
+                <div class="from-group mt-2 mb-2">
+                  <input type="file" style="display: none;" (change)="onImageChange($event)" #imageInpute>
+                  <button class="btn btn-primary" type="button" (click)="imageInpute.click()">
+                    Choose Image
+                  </button> |
+                  <button class="btn btn-success" type="button" (click)="uploadImageFile()">
+                    Upload
+                  </button>
+                </div>
+                <div class="form-group">
+                  <label for="imagePath">Image Url</label>
+                  <input type="text" class="form-control" ngModel name="imagePath" required
+                  id="imagePath" placeholder="Enter image Url"#imageUrl="ngModel" >
+                </div>
+                <div class="row mt-2" *ngIf="imageUrl.dirty || editRecipeMode || showImage">
+                  <div class="col-xs-12">
+                    <img [src]="imageUrl.value" alt="Image not found" class="image-responsive" style="height: 300px;">
+                  </div>
+                </div>
+              </div>  
+              <br>
+              <!-- <div class="form-group" *ngFor="let recipeLo of recipeLocations"> 
+                <input type="radio" ngModel name="recipeLocation" [value]="recipeLo" checked>{{recipeLo}}
+              </div> -->
+            
+              <br>
+              <div class="form-group">
+                <button class="btn btn-success" type="submit" [disabled]="!recipeDetails.valid">{{editRecipeMode ? "Update Recipe":"Add Recipe"}}</button> &nbsp;&nbsp;&nbsp;
+                <button class="btn btn-primary" type="button" (click)="addValueToForm()">Add Form Value</button>&nbsp;&nbsp;&nbsp;
+                <button class="btn btn-dark" type="button" (click)="reset()">Reset</button>
+              </div>
+             
+           </form>
+            
+        </div>
+    </div>
+</div>

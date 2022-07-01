@@ -1,0 +1,45 @@
+<div class="row mt-2" *ngIf="recipe!=undefined;else detailsInfo">
+    <div class="col-xs-12">
+        <div class="row">
+            <div class="col-md-5">
+                <h2 class="">{{recipe.name |uppercase }}</h2>
+                <p>{{recipe.description}}</p>
+                <div class="col-xs-12 mt-2">
+                   <h6>what come with it ?</h6>
+                   <ul>
+                       <li>one plate pohe</li>
+                       <li>one cup of tea</li>
+                       <li>first item</li>
+                       <li>first item</li>
+                       <li>first item</li>
+                       <li>first item</li>
+                   </ul>
+                    
+                </div>
+                <div class="col-xs-12 mt-2">
+                    <button class="btn btn-danger" (click)="onDeleteRecipe()">Delete</button>&nbsp;&nbsp;&nbsp;
+                    <button class="btn btn-primary" type="button" (click)="editRecipe()">Edit</button>
+            
+                </div>
+            </div>
+
+            <div class="col-md-7">
+                <img [src]="recipe.imagePath" alt="recipe.name" style="height: 380px;">
+            </div>
+        </div>
+        
+    </div>
+   
+    
+   
+    
+</div>
+<ng-template #detailsInfo class="col-xs-12 mt-4">
+
+    <p *ngIf="!deleteMsg">
+        Recipe is Not selected yet..!!
+    </p>
+    <p *ngIf="deleteMsg">
+        {{deleteMsg}}
+    </p>
+</ng-template>

@@ -1,0 +1,20 @@
+<div class="row">
+    <div class="col-xs-12" *ngIf="recipe!=undefined && recipe!=null;else noRecipeResponse">
+        <a routerLinkActive="active" routerLink="/recipe/details/{{recipe.id}}" class="list-group-item clearfix" (click)="onSelect()" >
+        <div class="row">   
+            <div class="col-md-8 pull-left" >
+                <h4 class="list-group-item-heading">{{recipe.name | uppercase}}</h4>
+                <p class="list-group-item-text">{{recipe.description | lowercase}}</p>
+            </div>
+            <div class="col-md-4 pull-right">
+                <span >
+                    <img [src]="recipe.imagePath" alt={{recipe.name}} class="img-responsive" style="height: 100px;">
+                </span>
+            </div>
+        </div>    
+        </a>
+    </div>
+    <ng-template #noRecipeResponse>
+        <p>no match found</p>
+    </ng-template>
+</div>
